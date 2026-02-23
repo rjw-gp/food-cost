@@ -55,6 +55,7 @@
           </table>
 
           <button type="button" id="add-row">Add Ingredient Row</button>
+          <button type="button" id="calculate-total">Total</button>
           <button type="submit">Save Recipe</button>
         </form>
 
@@ -64,6 +65,7 @@
 
     <template id="row-template">
       <tr>
+        <td class="ingredient-cell">
         <td>
           <input class="ingredient-name" type="text" required />
           <div class="suggestions"></div>
