@@ -10,5 +10,9 @@ th, td { border: 1px solid #ddd; padding: 0.4rem; text-align: left; vertical-ali
 .ingredient-cell { position: relative; }
 .suggestions { display: none; position: absolute; left: 0; top: calc(100% + 2px); width: 100%; background: #fff; border: 1px solid #bbb; z-index: 10; max-height: 180px; overflow-y: auto; }
 .suggestions.open { display: block; }
+th, td { border: 1px solid #ddd; padding: 0.4rem; text-align: left; }
+.recipe-meta input { width: 30%; }
+.results { margin-top: 1rem; font-weight: bold; }
+.suggestions { position: absolute; background: #fff; border: 1px solid #bbb; z-index: 10; }
 .suggestion-item { padding: 0.25rem 0.5rem; cursor: pointer; }
 .suggestion-item:hover { background: #ececec; }
