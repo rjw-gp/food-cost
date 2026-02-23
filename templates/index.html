@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Food Cost Calculator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" />
+  </head>
+  <body>
+    <main>
+      <h1>Food Cost Calculator</h1>
+
+      <section>
+        <h2>Ingredient Database Entry</h2>
+        <form id="ingredient-form">
+          <input name="name" type="text" placeholder="Ingredient name" required />
+          <input name="ap_quantity" type="number" min="0" step="0.01" placeholder="As-purchased quantity" required />
+          <select name="ap_unit">
+            {% for unit in units %}
+            <option value="{{ unit }}" {% if unit == 'each' %}selected{% endif %}>{{ unit }}</option>
+            {% endfor %}
+          </select>
+          <input name="ap_price" type="number" min="0" step="0.01" placeholder="As-purchased price" required />
+          <button type="submit">Save Ingredient</button>
+        </form>
+        <p id="ingredient-message"></p>
+      </section>
+
+      <section>
+        <h2>Recipe Form</h2>
+        <form id="recipe-form">
+          <div class="recipe-meta">
+            <input name="recipe_name" type="text" placeholder="Recipe name" required />
+            <input name="portions" type="number" min="0.01" step="0.01" placeholder="Number of portions" required />
+            <input name="spice_factor_percent" type="number" min="0" step="0.01" placeholder="Spice factor (%)" required />
+          </div>
+
+          <table id="recipe-table">
+            <thead>
+              <tr>
+                <th>Ingredient</th>
+                <th>EP Qty</th>
+                <th>EP Unit</th>
+                <th>Yield %</th>
+                <th>AP Qty</th>
+                <th>AP Unit</th>
+                <th>AP Price</th>
+                <th>AP Cost/Unit</th>
+                <th>EP Cost/Unit</th>
+                <th>Extended Cost</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody id="recipe-body"></tbody>
+          </table>
+
+          <button type="button" id="add-row">Add Ingredient Row</button>
+          <button type="button" id="calculate-total">Total</button>
+          <button type="submit">Save Recipe</button>
+        </form>
+
+        <div id="results" class="results"></div>
+      </section>
+    </main>
+
+    <template id="row-template">
+      <tr>
+        <td class="ingredient-cell">
+          <input class="ingredient-name" type="text" required />
+          <div class="suggestions"></div>
+        </td>
+        <td><input class="ep-quantity" type="number" min="0" step="0.01" required /></td>
+        <td>
+          <select class="ep-unit">
+            {% for unit in units %}
+            <option value="{{ unit }}" {% if unit == 'each' %}selected{% endif %}>{{ unit }}</option>
+            {% endfor %}
+          </select>
+        </td>
+        <td><input class="yield-percent" type="number" min="0.01" max="100" step="0.01" required /></td>
+        <td><input class="ap-quantity" type="number" min="0" step="0.01" required /></td>
+        <td>
+          <select class="ap-unit">
+            {% for unit in units %}
+            <option value="{{ unit }}" {% if unit == 'each' %}selected{% endif %}>{{ unit }}</option>
+            {% endfor %}
+          </select>
+        </td>
+        <td><input class="ap-price" type="number" min="0" step="0.01" required /></td>
+        <td class="ap-cost-unit">$0.00</td>
+        <td class="ep-cost-unit">$0.00</td>
+        <td class="extended-cost">$0.00</td>
+        <td><button type="button" class="remove-row">X</button></td>
+      </tr>
+    </template>
+
+    <script>
+      const UNITS = {{ units|tojson }};
+    </script>
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
+  </body>
+</html>

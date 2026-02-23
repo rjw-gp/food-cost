@@ -1,0 +1,14 @@
+body { font-family: Arial, sans-serif; margin: 1.5rem; background: #f7f7f7; }
+main { max-width: 1200px; margin: 0 auto; background: white; padding: 1rem 1.5rem; border-radius: 8px; }
+section { margin-bottom: 2rem; }
+form { margin-top: 0.75rem; }
+input, select, button { padding: 0.4rem; margin: 0.2rem; }
+table { width: 100%; border-collapse: collapse; margin-top: 1rem; }
+th, td { border: 1px solid #ddd; padding: 0.4rem; text-align: left; vertical-align: top; }
+.recipe-meta input { width: 30%; }
+.results { margin-top: 1rem; font-weight: bold; }
+.ingredient-cell { position: relative; }
+.suggestions { display: none; position: absolute; left: 0; top: calc(100% + 2px); width: 100%; background: #fff; border: 1px solid #bbb; z-index: 10; max-height: 180px; overflow-y: auto; }
+.suggestions.open { display: block; }
+.suggestion-item { padding: 0.25rem 0.5rem; cursor: pointer; }
+.suggestion-item:hover { background: #ececec; }
